@@ -5,6 +5,7 @@ linea layer3 quests
 ## config
 
 account.txt 填写账号，格式：私钥 一行一个 不要有多余的空行
+
 proxies.txt 填写代理 格式：user:password@ip:port 一行一个，与账号对应，没有的话不填
 
 ## run
