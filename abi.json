@@ -1,0 +1,49 @@
+{
+  "wizards": {
+    "address": "0xd540038b0b427238984e0341ba49f69cd80dc139",
+    "abi": [
+      {
+        "inputs": [],
+        "name": "mintEfficientN2M_001Z5BWH",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+      }
+    ]
+  },
+  "efrogs": {
+    "address": "0xf4aa97cde2686bc5ae2ee934a8e5330b8b13be64",
+    "abi": [
+      {
+        "inputs": [],
+        "name": "mintEfficientN2M_001Z5BWH",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+      }
+    ]
+  },
+  "clutch_ai": {
+    "address": "0xb8dd4f5aa8ad3feadc50f9d670644c02a07c9374",
+    "abi": [
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "uri",
+            "type": "string"
+          }
+        ],
+        "name": "safeMint",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+      }
+    ]
+  }
+}
