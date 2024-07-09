@@ -5,7 +5,7 @@ from eth_account.account import Account
 from loguru import logger
 
 
-class NFTs2ME:
+class NFTMint:
     def __init__(self, idx, private_key, rpc, proxies):
         self.idx = idx
         self.address = Account.from_key(private_key).address
@@ -84,3 +84,39 @@ class NFTs2ME:
         w3.eth.wait_for_transaction_receipt(tx_hash)
 
         logger.info(f"account {self.idx} mint efrogs nft success ✅ tx hash:{tx_hash.hex()}")
+
+    async def mint_linus_egg_nft(self):
+        f = open('abi.json', 'r', encoding='utf-8')
+        linus_egg_contract = json.load(f)['linus_egg']
+        contract_address = Web3.to_checksum_address(linus_egg_contract['address'])
+        linux_egg_abi = linus_egg_contract['abi']
+
+        proxies = {"proxies": self.proxies} if self.proxies is not None else None
+
+        w3 = Web3(HTTPProvider(self.linea_rpc, request_kwargs=proxies))
+        w3.middleware_onion.inject(geth_poa_middleware, layer=0)
+        contract = w3.eth.contract(address=contract_address, abi=linux_egg_abi)
+
+        nonce = w3.eth.get_transaction_count(account=self.address)
+
+        gas = contract.functions.launchpadBuy('0x0c21cfbb', '0x1ffca9db', 0, 1, [], b'').estimate_gas(
+            {
+                'from': self.address,
+                'nonce': nonce,
+                'value': 0
+            }
+        )
+        transaction = contract.functions.launchpadBuy('0x0c21cfbb', '0x1ffca9db', 0, 1, [], b'').build_transaction(
+            {
+                'from': self.address,
+                'gasPrice': w3.eth.gas_price,
+                'nonce': nonce,
+                'gas': gas,
+                'value': 0
+            }
+        )
+        signed_transaction = w3.eth.account.sign_transaction(transaction, private_key=self.private_key)
+        tx_hash = w3.eth.send_raw_transaction(signed_transaction.rawTransaction)
+        w3.eth.wait_for_transaction_receipt(tx_hash)
+
+        logger.info(f"account {self.idx} mint linus egg nft success ✅ tx hash:{tx_hash.hex()}")

@@ -3,7 +3,7 @@ import random
 
 from loguru import logger
 from clutchplay import ClutchPlay
-from nfts2me import NFTs2ME
+from nft_mint import NFTMint
 from fake_useragent import UserAgent
 
 
@@ -17,15 +17,19 @@ class Linea:
             "https": f"socks5://{proxy}"
         }
         self.clutch_ai = ClutchPlay(idx, private_key, user_agent, self.linea_rpc, self.proxies)
-        self.nfts2me = NFTs2ME(idx, private_key, self.linea_rpc, self.proxies)
+        self.nft_mint = NFTMint(idx, private_key, self.linea_rpc, self.proxies)
 
     async def mint_efrogs_quest(self):
-        await self.nfts2me.mint_efrogs_nft()
+        await self.nft_mint.mint_efrogs_nft()
         logger.success(f"account {self.idx} complete 【W1:eFrogs】 success ✅")
 
     async def mint_wizards_quest(self):
-        await self.nfts2me.mint_wizards_nft()
+        await self.nft_mint.mint_wizards_nft()
         logger.success(f"account {self.idx} complete 【W1:Wizards of Linea】 success ✅")
+
+    async def mint_linus_egg_quest(self):
+        await self.nft_mint.mint_linus_egg_nft()
+        logger.success(f"account {self.idx} complete 【W2:Linus】 success ✅")
 
     async def clutch_quest(self):
         await self.clutch_ai.login()
@@ -68,6 +72,8 @@ async def start_linea_l3_quest(semaphore, mission_type, idx, private_key, proxy)
                 await linea.mint_wizards_quest()
             elif int(mission_type) == 3:
                 await linea.mint_efrogs_quest()
+            elif int(mission_type) == 4:
+                await linea.mint_linus_egg_quest()
         except Exception as e:
             logger.error(f"account ({linea.idx}) complete quest failed ❌ {e}")
 
@@ -103,11 +109,12 @@ async def main(sync_num, mission_type):
 if __name__ == '__main__':
     SyncNum = 10
     MissionType = input(
-        """请输入任务: 
+        """
+        请输入任务: 
         1:W1:Crazy Gang
         2:W1:Wizards of Linea
         3:W1:eFrogs
-        >>
-        """
+        4:W2:Linus
+        >>"""
     )
     asyncio.run(main(SyncNum, MissionType))

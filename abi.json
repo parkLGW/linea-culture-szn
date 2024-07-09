@@ -45,5 +45,48 @@
         "type": "function"
       }
     ]
+  },
+  "linus_egg": {
+    "address": "0xbcfa22a36e555c507092ff16c1af4cb74b8514c8",
+    "abi": [
+      {
+        "inputs": [
+          {
+            "internalType": "bytes4",
+            "name": "proxyId",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "launchpadId",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "uint256",
+            "name": "slotIdx",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "quantity",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "additional",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "name": "launchpadBuy",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+      }
+    ]
   }
 }
