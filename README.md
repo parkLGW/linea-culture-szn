@@ -1,6 +1,7 @@
 # linea-culture-szn
 linea layer3 quests
 
+只完成任务，暂不支持layer3的xp领取
 
 ## config
 
