@@ -81,7 +81,7 @@ class ClutchPlay:
         response = await self.sess.post('https://v1.api.clutchplay.ai/user/wallet', headers=headers, json=json_data)
 
         if response.status_code != 200:
-            raise Exception('account {self.idx} Failed to login❌')
+            raise Exception(f'account {self.idx} Failed to login❌')
 
         res = response.json()
         self.headers['Authorization'] = f'Bearer {res["result"]["access_token"]}'

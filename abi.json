@@ -88,5 +88,17 @@
         "type": "function"
       }
     ]
+  },
+  "yooldo": {
+    "address": "0xF502AA456C4ACe0D77d55Ad86436F84b088486F1",
+    "abi": [
+      {
+        "inputs": [],
+        "name": "mint",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+      }
+    ]
   }
 }
