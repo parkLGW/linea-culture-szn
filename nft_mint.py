@@ -156,3 +156,39 @@ class NFTMint:
         w3.eth.wait_for_transaction_receipt(tx_hash)
 
         logger.info(f"account {self.idx} mint yooldo nft success ✅ tx hash:{tx_hash.hex()}")
+
+    async def mint_frog_wars_nft(self):
+        f = open('abi.json', 'r', encoding='utf-8')
+        frog_wars_contract = json.load(f)['frog_wars']
+        contract_address = Web3.to_checksum_address(frog_wars_contract['address'])
+        frog_wars_abi = frog_wars_contract['abi']
+
+        proxies = {"proxies": self.proxies} if self.proxies is not None else None
+
+        w3 = Web3(HTTPProvider(self.linea_rpc, request_kwargs=proxies))
+        w3.middleware_onion.inject(geth_poa_middleware, layer=0)
+        contract = w3.eth.contract(address=contract_address, abi=frog_wars_abi)
+
+        nonce = w3.eth.get_transaction_count(account=self.address)
+
+        gas = contract.functions.mintEfficientN2M_001Z5BWH().estimate_gas(
+            {
+                'from': self.address,
+                'nonce': nonce,
+                'value': 0
+            }
+        )
+        transaction = contract.functions.mintEfficientN2M_001Z5BWH().build_transaction(
+            {
+                'from': self.address,
+                'gasPrice': w3.eth.gas_price,
+                'nonce': nonce,
+                'gas': gas,
+                'value': 0
+            }
+        )
+        signed_transaction = w3.eth.account.sign_transaction(transaction, private_key=self.private_key)
+        tx_hash = w3.eth.send_raw_transaction(signed_transaction.rawTransaction)
+        w3.eth.wait_for_transaction_receipt(tx_hash)
+
+        logger.info(f"account {self.idx} mint frog wars nft success ✅ tx hash:{tx_hash.hex()}")

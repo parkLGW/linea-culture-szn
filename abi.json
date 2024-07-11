@@ -100,5 +100,17 @@
         "type": "function"
       }
     ]
+  },
+  "frog_wars": {
+    "address": "0x32dec694570ce8ee6aca08598daeea7a3e0168a3",
+    "abi": [
+      {
+        "inputs": [],
+        "name": "mintEfficientN2M_001Z5BWH",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+      }
+    ]
   }
 }

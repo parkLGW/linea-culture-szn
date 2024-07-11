@@ -35,6 +35,10 @@ class Linea:
         await self.nft_mint.mint_yooldo_nft()
         logger.success(f"account {self.idx} complete 【W2:Yooldo】 success ✅")
 
+    async def mint_frog_wars_quest(self):
+        await self.nft_mint.mint_frog_wars_nft()
+        logger.success(f"account {self.idx} complete 【W2:Frog Wars】 success ✅")
+
     async def clutch_quest(self):
         await self.clutch_ai.login()
         campaign_data = await self.clutch_ai.get_campaigns_data()
@@ -80,6 +84,8 @@ async def start_linea_l3_quest(semaphore, mission_type, idx, private_key, proxy)
                 await linea.mint_linus_egg_quest()
             elif int(mission_type) == 5:
                 await linea.mint_yooldo_quest()
+            elif int(mission_type) == 6:
+                await linea.mint_frog_wars_quest()
         except Exception as e:
             logger.error(f"account ({linea.idx}) complete quest failed ❌ {e}")
 
@@ -122,6 +128,7 @@ if __name__ == '__main__':
         3:W1:eFrogs
         4:W2:Linus
         5:W2:Yooldo
+        6:W2:Frog Wars
         >>"""
     )
     asyncio.run(main(SyncNum, MissionType))
