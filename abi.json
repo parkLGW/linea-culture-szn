@@ -112,5 +112,17 @@
         "type": "function"
       }
     ]
+  },
+  "acg": {
+    "address": "0x057b0080120D89aE21cC622db34f2d9Ae9fF2BDE",
+    "abi": [
+      {
+        "inputs": [],
+        "name": "mint",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+      }
+    ]
   }
 }
