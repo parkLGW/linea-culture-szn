@@ -113,6 +113,18 @@
       }
     ]
   },
+  "toad": {
+    "address": "0x0841479e87ed8cc7374d3e49ff677f0e62f91fa1",
+    "abi": [
+      {
+        "inputs": [],
+        "name": "mintEfficientN2M_001Z5BWH",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+      }
+    ]
+  },
   "acg": {
     "address": "0x057b0080120D89aE21cC622db34f2d9Ae9fF2BDE",
     "abi": [

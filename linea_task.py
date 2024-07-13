@@ -20,11 +20,11 @@ class Linea:
         self.nft_mint = NFTMint(idx, private_key, self.linea_rpc, self.proxies)
 
     async def mint_efrogs_quest(self):
-        await self.nft_mint.mint_efrogs_nft()
+        await self.nft_mint.mint_on_nfts2me('efrogs')
         logger.success(f"account {self.idx} complete 【W1:eFrogs】 success ✅")
 
     async def mint_wizards_quest(self):
-        await self.nft_mint.mint_wizards_nft()
+        await self.nft_mint.mint_on_nfts2me('wizards')
         logger.success(f"account {self.idx} complete 【W1:Wizards of Linea】 success ✅")
 
     async def mint_linus_egg_quest(self):
@@ -36,12 +36,16 @@ class Linea:
         logger.success(f"account {self.idx} complete 【W2:Yooldo】 success ✅")
 
     async def mint_frog_wars_quest(self):
-        await self.nft_mint.mint_frog_wars_nft()
+        await self.nft_mint.mint_on_nfts2me('frog_wars')
         logger.success(f"account {self.idx} complete 【W2:Frog Wars】 success ✅")
 
     async def mint_acg_quest(self):
         await self.nft_mint.mint_acg_nft()
         logger.success(f"account {self.idx} complete 【W2:ACG】 success ✅")
+
+    async def mint_toad_quest(self):
+        await self.nft_mint.mint_on_nfts2me('toad')
+        logger.success(f"account {self.idx} complete 【W2:Toad The Great】 success ✅")
 
     async def clutch_quest(self):
         await self.clutch_ai.login()
@@ -76,7 +80,7 @@ async def start_linea_l3_quest(semaphore, mission_type, idx, private_key, proxy)
     async with semaphore:
         user_agent = UserAgent(browsers='chrome', os='macos', platforms='pc').random
         linea = Linea(idx, private_key, user_agent, proxy)
-        await asyncio.sleep(random.randint(10, 20))
+        await asyncio.sleep(random.randint(50, 200))
         try:
             if int(mission_type) == 1:
                 await linea.clutch_quest()
@@ -92,6 +96,8 @@ async def start_linea_l3_quest(semaphore, mission_type, idx, private_key, proxy)
                 await linea.mint_frog_wars_quest()
             elif int(mission_type) == 7:
                 await linea.mint_acg_quest()
+            elif int(mission_type) == 8:
+                await linea.mint_toad_quest()
         except Exception as e:
             logger.error(f"account ({linea.idx}) complete quest failed ❌ {e}")
 
@@ -125,7 +131,7 @@ async def main(sync_num, mission_type):
 
 
 if __name__ == '__main__':
-    SyncNum = 10
+    SyncNum = 1
     MissionType = input(
         """
         请输入任务: 
@@ -136,6 +142,7 @@ if __name__ == '__main__':
         5:W2:Yooldo
         6:W2:Frog Wars
         7:W2:ACG
+        8:W2:Toad The Great
         >>"""
     )
     asyncio.run(main(SyncNum, MissionType))
