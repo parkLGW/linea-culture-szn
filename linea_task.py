@@ -80,7 +80,7 @@ async def start_linea_l3_quest(semaphore, mission_type, idx, private_key, proxy)
     async with semaphore:
         user_agent = UserAgent(browsers='chrome', os='macos', platforms='pc').random
         linea = Linea(idx, private_key, user_agent, proxy)
-        await asyncio.sleep(random.randint(50, 200))
+        await asyncio.sleep(random.randint(10, 20))
         try:
             if int(mission_type) == 1:
                 await linea.clutch_quest()
@@ -131,7 +131,7 @@ async def main(sync_num, mission_type):
 
 
 if __name__ == '__main__':
-    SyncNum = 1
+    SyncNum = 10
     MissionType = input(
         """
         请输入任务: 
