@@ -28,7 +28,7 @@ class Linea:
         logger.success(f"account {self.idx} complete 【W1:Wizards of Linea】 success ✅")
 
     async def mint_linus_egg_quest(self):
-        await self.nft_mint.mint_linus_egg_nft()
+        await self.nft_mint.mint_on_element('linus_egg', '0x1ffca9db')
         logger.success(f"account {self.idx} complete 【W2:Linus】 success ✅")
 
     async def mint_yooldo_quest(self):
@@ -46,6 +46,10 @@ class Linea:
     async def mint_toad_quest(self):
         await self.nft_mint.mint_on_nfts2me('toad')
         logger.success(f"account {self.idx} complete 【W2:Toad The Great】 success ✅")
+
+    async def mint_ascend_the_end_quest(self):
+        await self.nft_mint.mint_on_element('ascend_the_end', '0x19a747c1')
+        logger.success(f"account {self.idx} complete 【W3:AscendTheEnd】 success ✅")
 
     async def clutch_quest(self):
         await self.clutch_ai.login()
@@ -98,6 +102,8 @@ async def start_linea_l3_quest(semaphore, mission_type, idx, private_key, proxy)
                 await linea.mint_acg_quest()
             elif int(mission_type) == 8:
                 await linea.mint_toad_quest()
+            elif int(mission_type) == 9:
+                await linea.mint_ascend_the_end_quest()
         except Exception as e:
             logger.error(f"account ({linea.idx}) complete quest failed ❌ {e}")
 
@@ -143,6 +149,7 @@ if __name__ == '__main__':
         6:W2:Frog Wars
         7:W2:ACG
         8:W2:Toad The Great
+        9:W3:AscendTheEnd
         >>"""
     )
     asyncio.run(main(SyncNum, MissionType))
