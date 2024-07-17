@@ -179,5 +179,17 @@
         "type": "function"
       }
     ]
+  },
+  "sending_me": {
+    "address": "0xeaea2fa0dea2d1191a584cfbb227220822e29086",
+    "abi": [
+      {
+        "inputs": [],
+        "name": "mint",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+      }
+    ]
   }
 }
