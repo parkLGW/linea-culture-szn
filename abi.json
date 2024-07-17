@@ -191,5 +191,17 @@
         "type": "function"
       }
     ]
+  },
+  "town_story": {
+    "address": "0x8ad15e54d37d7d35fcbd62c0f9de4420e54df403",
+    "abi": [
+      {
+        "inputs": [],
+        "name": "mintEfficientN2M_001Z5BWH",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+      }
+    ]
   }
 }
