@@ -59,6 +59,10 @@ class Linea:
         await self.nft_mint.mint_on_nfts2me('town_story')
         logger.success(f"account {self.idx} complete 【W3:Townstory】 success ✅")
 
+    async def mint_danielle_quest(self):
+        await self.nft_mint.mint_on_nfts2me('danielle_zosavac')
+        logger.success(f"account {self.idx} complete 【W3:DanielleZosavac】 success ✅")
+
     async def clutch_quest(self):
         await self.clutch_ai.login()
         campaign_data = await self.clutch_ai.get_campaigns_data()
@@ -116,6 +120,8 @@ async def start_linea_l3_quest(semaphore, mission_type, idx, private_key, proxy)
                 await linea.mint_sending_me_quest()
             elif int(mission_type) == 11:
                 await linea.mint_town_story_quest()
+            elif int(mission_type) == 12:
+                await linea.mint_danielle_quest()
         except Exception as e:
             logger.error(f"account ({linea.idx}) complete quest failed ❌ {e}")
 
@@ -164,6 +170,7 @@ if __name__ == '__main__':
         9:W3:AscendTheEnd
         10:W3:SendingMe
         11:W3:TownStory
+        12:W3:DanielleZosavac
         >>"""
     )
     asyncio.run(main(SyncNum, MissionType))

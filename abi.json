@@ -203,5 +203,17 @@
         "type": "function"
       }
     ]
+  },
+  "danielle_zosavac": {
+    "address": "0x3a21e152ac78f3055aa6b23693fb842defde0213",
+    "abi": [
+      {
+        "inputs": [],
+        "name": "mintEfficientN2M_001Z5BWH",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+      }
+    ]
   }
 }
