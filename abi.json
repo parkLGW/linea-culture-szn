@@ -46,7 +46,7 @@
       }
     ]
   },
-  "linus_egg": {
+  "element": {
     "address": "0xbcfa22a36e555c507092ff16c1af4cb74b8514c8",
     "abi": [
       {
@@ -137,49 +137,6 @@
       }
     ]
   },
-  "ascend_the_end": {
-    "address": "0xbcfa22a36e555c507092ff16c1af4cb74b8514c8",
-    "abi": [
-      {
-        "inputs": [
-          {
-            "internalType": "bytes4",
-            "name": "proxyId",
-            "type": "bytes4"
-          },
-          {
-            "internalType": "bytes4",
-            "name": "launchpadId",
-            "type": "bytes4"
-          },
-          {
-            "internalType": "uint256",
-            "name": "slotIdx",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "quantity",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256[]",
-            "name": "additional",
-            "type": "uint256[]"
-          },
-          {
-            "internalType": "bytes",
-            "name": "data",
-            "type": "bytes"
-          }
-        ],
-        "name": "launchpadBuy",
-        "outputs": [],
-        "stateMutability": "payable",
-        "type": "function"
-      }
-    ]
-  },
   "sending_me": {
     "address": "0xeaea2fa0dea2d1191a584cfbb227220822e29086",
     "abi": [
@@ -210,6 +167,39 @@
       {
         "inputs": [],
         "name": "mintEfficientN2M_001Z5BWH",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+      }
+    ]
+  },
+  "demmortal_treasure": {
+    "address": "0x5a77b45b6f5309b07110fe98e25a178eee7516c1",
+    "abi": [
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "name": "mint",
         "outputs": [],
         "stateMutability": "payable",
         "type": "function"

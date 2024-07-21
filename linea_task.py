@@ -28,7 +28,7 @@ class Linea:
         logger.success(f"account {self.idx} complete 【W1:Wizards of Linea】 success ✅")
 
     async def mint_linus_egg_quest(self):
-        await self.nft_mint.mint_on_element('linus_egg', '0x1ffca9db')
+        await self.nft_mint.mint_on_element('element', '0x1ffca9db')
         logger.success(f"account {self.idx} complete 【W2:Linus】 success ✅")
 
     async def mint_yooldo_quest(self):
@@ -48,7 +48,7 @@ class Linea:
         logger.success(f"account {self.idx} complete 【W2:Toad The Great】 success ✅")
 
     async def mint_ascend_the_end_quest(self):
-        await self.nft_mint.mint_on_element('ascend_the_end', '0x19a747c1')
+        await self.nft_mint.mint_on_element('element', '0x19a747c1')
         logger.success(f"account {self.idx} complete 【W3:AscendTheEnd】 success ✅")
 
     async def mint_sending_me_quest(self):
@@ -62,6 +62,14 @@ class Linea:
     async def mint_danielle_quest(self):
         await self.nft_mint.mint_on_nfts2me('danielle_zosavac')
         logger.success(f"account {self.idx} complete 【W3:DanielleZosavac】 success ✅")
+
+    async def mint_demmortal_treasure_quest(self):
+        await self.nft_mint.mint_on_nfts2me('demmortal_treasure')
+        logger.success(f"account {self.idx} complete 【W3:Demmortal Treasure】 success ✅")
+
+    async def mint_foxy_quest(self):
+        await self.nft_mint.mint_on_element('element', '0x2968bd75')
+        logger.success(f"account {self.idx} complete 【W3:Foxy】 success ✅")
 
     async def clutch_quest(self):
         await self.clutch_ai.login()
@@ -122,6 +130,10 @@ async def start_linea_l3_quest(semaphore, mission_type, idx, private_key, proxy)
                 await linea.mint_town_story_quest()
             elif int(mission_type) == 12:
                 await linea.mint_danielle_quest()
+            elif int(mission_type) == 13:
+                await linea.mint_demmortal_treasure_quest()
+            elif int(mission_type) == 14:
+                await linea.mint_foxy_quest()
         except Exception as e:
             logger.error(f"account ({linea.idx}) complete quest failed ❌ {e}")
 
@@ -171,6 +183,8 @@ if __name__ == '__main__':
         10:W3:SendingMe
         11:W3:TownStory
         12:W3:DanielleZosavac
+        13:W3:Demmortal Treasure
+        14:W3:Foxy
         >>"""
     )
     asyncio.run(main(SyncNum, MissionType))
