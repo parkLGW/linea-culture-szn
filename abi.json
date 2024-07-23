@@ -206,7 +206,7 @@
       }
     ]
   },
-  "coop_records": {
+  "phosphor": {
     "address": "0xAd626D0F8BE64076C4c27a583e3df3878874467E",
     "abi": [
       {

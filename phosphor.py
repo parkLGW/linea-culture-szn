@@ -33,13 +33,13 @@ class Phosphor:
         )
         self.linea_rpc = rpc
 
-    async def purchase_intents(self):
+    async def purchase_intents(self,listing_id):
         headers = self.headers
         json_data = {
             'buyer': {
                 'eth_address': self.address,
             },
-            'listing_id': 'fceb2be9-f9fd-458a-8952-9a0a6f873aff',
+            'listing_id': listing_id,
             'provider': 'MINT_VOUCHER',
             'quantity': 1,
         }
@@ -55,15 +55,15 @@ class Phosphor:
 
     async def _mint_onchain(self, purchase_data):
         f = open('abi.json', 'r', encoding='utf-8')
-        coop_records_contract = json.load(f)['coop_records']
-        contract_address = Web3.to_checksum_address(coop_records_contract['address'])
-        coop_records_abi = coop_records_contract['abi']
+        phosphor_contract = json.load(f)['phosphor']
+        contract_address = Web3.to_checksum_address(purchase_data['contract'])
+        phosphor_abi = phosphor_contract['abi']
 
         proxies = {"proxies": self.proxies} if self.proxies is not None else None
 
         w3 = Web3(HTTPProvider(self.linea_rpc, request_kwargs=proxies))
         w3.middleware_onion.inject(geth_poa_middleware, layer=0)
-        contract = w3.eth.contract(address=contract_address, abi=coop_records_abi)
+        contract = w3.eth.contract(address=contract_address, abi=phosphor_abi)
 
         voucher = (
             purchase_data['voucher']['net_recipient'],
@@ -101,4 +101,4 @@ class Phosphor:
         w3.eth.wait_for_transaction_receipt(tx_hash)
 
         logger.info(
-            f"account {self.idx} mint coop records nft success ✅ tx hash: https://lineascan.build/tx/{tx_hash.hex()}")
+            f"account {self.idx} mint phosphor nft success ✅ tx hash: https://lineascan.build/tx/{tx_hash.hex()}")

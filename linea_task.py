@@ -102,8 +102,12 @@ class Linea:
         logger.success(f"account {self.idx} complete 【W1:Crazy Gang】 success ✅")
 
     async def coop_records_quest(self):
-        await self.phosphor.purchase_intents()
+        await self.phosphor.purchase_intents('fceb2be9-f9fd-458a-8952-9a0a6f873aff')
         logger.success(f"account {self.idx} complete 【W4:Coop Records】 success ✅")
+
+    async def borja_moskv_quest(self):
+        await self.phosphor.purchase_intents('849e42a7-45dd-4a5b-a895-f5496e46ade2')
+        logger.success(f"account {self.idx} complete 【W4:Borja Moskv】success ✅")
 
 
 async def start_linea_l3_quest(semaphore, mission_type, idx, private_key, proxy):
@@ -142,6 +146,8 @@ async def start_linea_l3_quest(semaphore, mission_type, idx, private_key, proxy)
                 await linea.mint_foxy_quest()
             elif int(mission_type) == 15:
                 await linea.coop_records_quest()
+            elif int(mission_type) == 16:
+                await linea.borja_moskv_quest()
         except Exception as e:
             logger.error(f"account ({linea.idx}) complete quest failed ❌ {e}")
 
@@ -164,6 +170,8 @@ async def main(sync_num, mission_type):
     missions = []
 
     for idx in range(len(private_keys)):
+        if idx == 0:
+            continue
         private_key = private_keys[idx]
         proxy = proxies[idx]
 
@@ -175,7 +183,7 @@ async def main(sync_num, mission_type):
 
 
 if __name__ == '__main__':
-    SyncNum = 3
+    SyncNum = 10
     RandomLeft = 10
     RandomRight = 20
     MissionType = input(
@@ -196,6 +204,7 @@ if __name__ == '__main__':
         13:W3:Demmortal Treasure
         14:W3:Foxy
         15:W4:Coop Records
+        16:W4:Borja Moskv
         >>"""
     )
     asyncio.run(main(SyncNum, MissionType))
