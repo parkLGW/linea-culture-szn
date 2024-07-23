@@ -4,6 +4,7 @@ import random
 from loguru import logger
 from clutchplay import ClutchPlay
 from nft_mint import NFTMint
+from phosphor import Phosphor
 from fake_useragent import UserAgent
 
 
@@ -18,6 +19,7 @@ class Linea:
         }
         self.clutch_ai = ClutchPlay(idx, private_key, user_agent, self.linea_rpc, self.proxies)
         self.nft_mint = NFTMint(idx, private_key, self.linea_rpc, self.proxies)
+        self.phosphor = Phosphor(idx, private_key, user_agent, self.linea_rpc, self.proxies)
 
     async def mint_efrogs_quest(self):
         await self.nft_mint.mint_on_nfts2me('efrogs')
@@ -99,12 +101,16 @@ class Linea:
 
         logger.success(f"account {self.idx} complete 【W1:Crazy Gang】 success ✅")
 
+    async def coop_records_quest(self):
+        await self.phosphor.purchase_intents()
+        logger.success(f"account {self.idx} complete 【W4:Coop Records】 success ✅")
+
 
 async def start_linea_l3_quest(semaphore, mission_type, idx, private_key, proxy):
     async with semaphore:
         user_agent = UserAgent(browsers='chrome', os='macos', platforms='pc').random
         linea = Linea(idx, private_key, user_agent, proxy)
-        await asyncio.sleep(random.randint(10, 20))
+        await asyncio.sleep(random.randint(RandomLeft, RandomRight))
         try:
             if int(mission_type) == 1:
                 await linea.clutch_quest()
@@ -134,6 +140,8 @@ async def start_linea_l3_quest(semaphore, mission_type, idx, private_key, proxy)
                 await linea.mint_demmortal_treasure_quest()
             elif int(mission_type) == 14:
                 await linea.mint_foxy_quest()
+            elif int(mission_type) == 15:
+                await linea.coop_records_quest()
         except Exception as e:
             logger.error(f"account ({linea.idx}) complete quest failed ❌ {e}")
 
@@ -167,7 +175,9 @@ async def main(sync_num, mission_type):
 
 
 if __name__ == '__main__':
-    SyncNum = 10
+    SyncNum = 3
+    RandomLeft = 10
+    RandomRight = 20
     MissionType = input(
         """
         请输入任务: 
@@ -185,6 +195,7 @@ if __name__ == '__main__':
         12:W3:DanielleZosavac
         13:W3:Demmortal Treasure
         14:W3:Foxy
+        15:W4:Coop Records
         >>"""
     )
     asyncio.run(main(SyncNum, MissionType))
