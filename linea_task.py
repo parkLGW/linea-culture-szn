@@ -109,6 +109,10 @@ class Linea:
         await self.phosphor.purchase_intents('849e42a7-45dd-4a5b-a895-f5496e46ade2')
         logger.success(f"account {self.idx} complete 【W4:Borja Moskv】success ✅")
 
+    async def forbidden_fruit_quest(self):
+        await self.phosphor.purchase_intents('3d595f3e-6609-405f-ba3c-d1e28381f11a')
+        logger.success(f"account {self.idx} complete 【W4:Forbidden Fruit】success ✅")
+
 
 async def start_linea_l3_quest(semaphore, mission_type, idx, private_key, proxy):
     async with semaphore:
@@ -148,6 +152,8 @@ async def start_linea_l3_quest(semaphore, mission_type, idx, private_key, proxy)
                 await linea.coop_records_quest()
             elif int(mission_type) == 16:
                 await linea.borja_moskv_quest()
+            elif int(mission_type) == 17:
+                await linea.forbidden_fruit_quest()
         except Exception as e:
             logger.error(f"account ({linea.idx}) complete quest failed ❌ {e}")
 
@@ -170,8 +176,6 @@ async def main(sync_num, mission_type):
     missions = []
 
     for idx in range(len(private_keys)):
-        if idx == 0:
-            continue
         private_key = private_keys[idx]
         proxy = proxies[idx]
 
@@ -205,6 +209,7 @@ if __name__ == '__main__':
         14:W3:Foxy
         15:W4:Coop Records
         16:W4:Borja Moskv
+        17:W4:Forbidden Fruit
         >>"""
     )
     asyncio.run(main(SyncNum, MissionType))
