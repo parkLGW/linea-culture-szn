@@ -109,9 +109,13 @@ class Linea:
         await self.phosphor.purchase_intents('849e42a7-45dd-4a5b-a895-f5496e46ade2')
         logger.success(f"account {self.idx} complete 【W4:Borja Moskv】success ✅")
 
-    async def forbidden_fruit_quest(self):
+    async def forbidden_fruit_JT_quest(self):
         await self.phosphor.purchase_intents('3d595f3e-6609-405f-ba3c-d1e28381f11a')
-        logger.success(f"account {self.idx} complete 【W4:Forbidden Fruit】success ✅")
+        logger.success(f"account {self.idx} complete 【W4:Forbidden Fruit JT】success ✅")
+
+    async def forbidden_fruit_crux_quest(self):
+        await self.phosphor.purchase_intents('d3542d49-273c-4f2d-9d33-8904c773ed14')
+        logger.success(f"account {self.idx} complete 【W4:Forbidden Fruit Crux】success ✅")
 
 
 async def start_linea_l3_quest(semaphore, mission_type, idx, private_key, proxy):
@@ -153,7 +157,9 @@ async def start_linea_l3_quest(semaphore, mission_type, idx, private_key, proxy)
             elif int(mission_type) == 16:
                 await linea.borja_moskv_quest()
             elif int(mission_type) == 17:
-                await linea.forbidden_fruit_quest()
+                await linea.forbidden_fruit_JT_quest()
+            elif int(mission_type) == 18:
+                await linea.forbidden_fruit_crux_quest()
         except Exception as e:
             logger.error(f"account ({linea.idx}) complete quest failed ❌ {e}")
 
@@ -209,7 +215,8 @@ if __name__ == '__main__':
         14:W3:Foxy
         15:W4:Coop Records
         16:W4:Borja Moskv
-        17:W4:Forbidden Fruit
+        17:W4:Forbidden Fruit JT
+        18:W4:Forbidden Fruit Crux
         >>"""
     )
     asyncio.run(main(SyncNum, MissionType))
