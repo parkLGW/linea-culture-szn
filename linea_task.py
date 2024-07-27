@@ -121,6 +121,10 @@ class Linea:
         await self.phosphor.purchase_intents('3c23e064-486d-46c5-8675-eabbc2e7d15e')
         logger.success(f"account {self.idx} complete 【W4:Forbidden Fruit Stonez the Organic】success ✅")
 
+    async def laurent_bellue_quest(self):
+        await self.phosphor.purchase_intents('86a8741b-28dd-42ca-9f2f-dfb173a62099')
+        logger.success(f"account {self.idx} complete 【W4:Adélaïde Laurent-Bellue】success ✅")
+
 
 async def start_linea_l3_quest(semaphore, mission_type, idx, private_key, proxy):
     async with semaphore:
@@ -166,6 +170,8 @@ async def start_linea_l3_quest(semaphore, mission_type, idx, private_key, proxy)
                 await linea.forbidden_fruit_crux_quest()
             elif int(mission_type) == 19:
                 await linea.forbidden_fruit_stonez_quest()
+            elif int(mission_type) == 20:
+                await linea.laurent_bellue_quest()
         except Exception as e:
             logger.error(f"account ({linea.idx}) complete quest failed ❌ {e}")
 
@@ -224,6 +230,7 @@ if __name__ == '__main__':
         17:W4:Forbidden Fruit JT
         18:W4:Forbidden Fruit Crux
         19:W4:Forbidden Fruit Stonez
+        20:W4:Adélaïde Laurent-Bellue
         >>"""
     )
     asyncio.run(main(SyncNum, MissionType))
